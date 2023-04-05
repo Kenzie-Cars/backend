@@ -8,21 +8,24 @@ import {
   BeforeInsert,
   BeforeUpdate,
   OneToMany,
+  OneToOne,
+  JoinColumn,
 } from "typeorm";
 import { Users_advertisements } from "./users_advertisements.entity";
+import { Address } from "./address.entity";
 
 @Entity("users")
 export class Users {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({unique: true})
   email: string;
 
   @Column()
   password: string;
 
-  @Column()
+  @Column({unique: true})
   cpf: string;
 
   @Column()
@@ -61,4 +64,8 @@ export class Users {
   @OneToMany(()=> Users_advertisements, (userAdvertisements)=> userAdvertisements.user)
   userAdvertisements: Users_advertisements[]
 
+  @OneToOne(()=> Address, (address)=> address.user)
+  @JoinColumn()
+  address: Address
+  
 }

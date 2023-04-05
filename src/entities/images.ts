@@ -3,15 +3,15 @@ import { Advertisements } from "./advertisement.entity";
 
 @Entity("images")
 export class Images {
-    @PrimaryGeneratedColumn("uuid")
-    id: string;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
-    @Column()
-    url: string
+  @Column()
+  url: string;
 
-    @Column()
-    title: string
+  @Column()
+  title: string;
 
-    @ManyToOne(() => Advertisements, (advertisement) => advertisement.images)
-    images: Images
+  @ManyToOne(() => Advertisements, (advertisement) => advertisement.images)
+  images: Images;
 }
