@@ -34,8 +34,8 @@ export class Users {
   @Column()
   birthDate: Date;
 
-  @Column({ type: "text" })
-  description: Text;
+  @Column({ length: 500 })
+  description: string;
 
   @Column()
   is_adm: boolean;

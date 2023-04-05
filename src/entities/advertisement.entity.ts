@@ -26,16 +26,16 @@ export class Advertisements {
   @Column({ length: 20 })
   color: string;
 
-  @Column({ type: "text", length: 20 })
+  @Column({ length: 500 })
   description: string;
 
-  @Column({ length: 6 })
+  @Column()
   km: number;
 
-  @Column({ type: "decimal", length: 10 })
+  @Column({ type: "decimal" })
   FIPE_price: number;
 
-  @Column({ type: "decimal", length: 10 })
+  @Column({ type: "decimal"})
   price: number;
 
   @CreateDateColumn({ type: "timestamp" })

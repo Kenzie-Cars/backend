@@ -7,6 +7,7 @@ import { Advertisements } from "./entities/advertisement.entity";
 import { Images } from "./entities/images";
 import { Users_advertisements } from "./entities/users_advertisements.entity";
 import path from "path";
+import { initialMigration1680696696321 } from "./migrations/1680696696321-initialMigration";
 
 const dataSourceConfig = (): DataSourceOptions => {
     const migrationsPath: string = path.join(
@@ -33,7 +34,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [Users, Address, Advertisements, Images, Users_advertisements],
-    migrations: [migrationsPath],
+    migrations: [initialMigration1680696696321],
   };
 };
 
