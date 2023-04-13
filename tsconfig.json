@@ -2,7 +2,10 @@
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
-    "typeRoots": ["src/@types", "node_modules/@types"],
+    "typeRoots": [
+      "src/@types",
+      "node_modules/@types"
+    ],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -12,6 +15,11 @@
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false
   },
-  "include": ["src"],
-  "exclude": ["node_modules"],
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  // "strictNullChecks": true
 }

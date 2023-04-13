@@ -9,9 +9,6 @@ export class Images {
   @Column()
   url: string;
 
-  @Column()
-  title: string;
-
   @ManyToOne(() => Advertisements, (advertisement) => advertisement.images)
-  images: Images;
+  advertisement: Advertisements;
 }
