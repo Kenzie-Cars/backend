@@ -16,9 +16,7 @@ const createAdvertisementService = async (advertisementData: IAdvertisementRespo
 
     const imgs = [];
 
-    // Crie as imagens e associe o ID do anúncio a cada imagem
     for (let image of images!) {
-        // Atribua o ID do anúncio à propriedade FK da imagem
         image.advertisementsId = advertisement.id;
 
         const currentImage = imagesRepository.create(image);
@@ -26,7 +24,6 @@ const createAdvertisementService = async (advertisementData: IAdvertisementRespo
         imgs.push(currentImage);
     }
 
-    // Atualize o anúncio com as imagens associadas
     advertisement.images = imgs;
     await advertisementRepository.save(advertisement);
 
