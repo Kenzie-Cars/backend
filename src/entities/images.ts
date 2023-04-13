@@ -9,6 +9,6 @@ export class Images {
   @Column()
   url: string;
 
-  @ManyToOne(() => Advertisements, (advertisement) => advertisement.images)
+  @ManyToOne(() => Advertisements, (advertisement) => advertisement.images, { onDelete: "CASCADE" })
   advertisement: Advertisements;
 }

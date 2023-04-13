@@ -8,6 +8,7 @@ import { Images } from "./entities/images";
 import { Users } from "./entities/user.entity";
 import { Users_advertisements } from "./entities/users_advertisements.entity";
 import { InitialMigration1681348057123 } from "./migrations/1681348057123-InitialMigration";
+import { DeleteCascadeImg1681422034158 } from "./migrations/1681422034158-deleteCascadeImg";
 
 const dataSourceConfig = (): DataSourceOptions => {
   const migrationsPath: string = path.join(
@@ -34,7 +35,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [Users, Address, Advertisements, Images, Users_advertisements],
-    migrations: [InitialMigration1681348057123],
+    migrations: [DeleteCascadeImg1681422034158],
   };
 };
 

@@ -38,18 +38,18 @@ export class Advertisements {
   @Column({ type: "decimal" })
   FIPE_price: number;
 
-  @Column({ type: "decimal"})
+  @Column({ type: "decimal" })
   price: number;
 
   @CreateDateColumn()
   created_at: Date;
- 
+
   @DeleteDateColumn()
   updated_at: Date;
 
   // @OneToMany(() => Users_advertisements, (userAdvertisements) => userAdvertisements.advertisements)
   // userAdvertisements: Users_advertisements[]
 
-  @OneToMany(() => Images, (images) => images.advertisement, {eager: true})
+  @OneToMany(() => Images, (images) => images.advertisement, { eager: true })
   images: Images[]
 }
