@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { IAdvertisementResponse } from "../../interfaces/advertisements";
 
 export const AdvertisementSchema: any = yup.object().shape({
     brand: yup.string().required(),
@@ -29,9 +30,10 @@ export const ReturnAdvertisementSchema: any = yup.object().shape({
         .shape({
             id: yup.string().uuid().optional(),
             url: yup.string().optional(),
-            imagesId: yup.string().uuid().optional()
+            advertisementId: yup.string().uuid().optional()
         })).required(),
     created_at: yup.date().nullable().default(null),
     updated_at: yup.date().nullable().default(null)
 });
 
+export const ListAdvertisementsSchema: yup.SchemaOf<IAdvertisementResponse[]> = yup.array(ReturnAdvertisementSchema)

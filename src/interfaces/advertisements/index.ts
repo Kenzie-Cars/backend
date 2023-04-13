@@ -6,7 +6,7 @@ export interface IImages {
 export interface IImagesResponse {
   id: string;
   url: string;
-  imagesId: string
+  advertisementsId: string
 }
 
 export interface IAdvertisement {

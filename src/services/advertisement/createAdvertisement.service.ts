@@ -7,23 +7,28 @@ import { ReturnAdvertisementSchema } from "../../schemas/advertisement";
 
 const createAdvertisementService = async (advertisementData: IAdvertisementResponse) => {
 
-    const advertisementRepository: Repository<Advertisements> = AppDataSource.getRepository(Advertisements)
+    const advertisementRepository: Repository<Advertisements> = AppDataSource.getRepository(Advertisements);
+    const imagesRepository: Repository<Images> = AppDataSource.getRepository(Images);
+    const { images, ...rest } = advertisementData;
 
-    const imagesRepository: Repository<Images> = AppDataSource.getRepository(Images)
+    const advertisement: Advertisements = advertisementRepository.create(rest);
+    await advertisementRepository.save(advertisement);
 
-    const { images, ...rest } = advertisementData
+    const imgs = [];
 
-    const advertisement: Advertisements = advertisementRepository.create(rest)
-
-    await advertisementRepository.save(advertisement)
-
-    const imgs = []
-
+    // Crie as imagens e associe o ID do anúncio a cada imagem
     for (let image of images!) {
-        const newAnnouncement = imagesRepository.create(image)
-        await imagesRepository.save(newAnnouncement)
-        imgs.push(newAnnouncement)
+        // Atribua o ID do anúncio à propriedade FK da imagem
+        image.advertisementsId = advertisement.id;
+
+        const currentImage = imagesRepository.create(image);
+        await imagesRepository.save(currentImage);
+        imgs.push(currentImage);
     }
+
+    // Atualize o anúncio com as imagens associadas
+    advertisement.images = imgs;
+    await advertisementRepository.save(advertisement);
 
     const annoucements = await advertisementRepository.findOneBy({
         id: advertisement.id
