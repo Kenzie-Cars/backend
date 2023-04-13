@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, DeleteDateColumn} from "typeorm";
-import { Users } from "./user.entity";
 import { Advertisements } from "./advertisement.entity";
+import { Users } from "./user.entity";
 
 @Entity("users_advertisements")
 export class Users_advertisements {
@@ -16,6 +16,6 @@ export class Users_advertisements {
     @ManyToOne(() => Users, (user) => user.userAdvertisements)
     user: Users;
 
-    @ManyToOne(() => Advertisements, (advertisements) => advertisements.userAdvertisements)
-    advertisements: Advertisements;
+    // @ManyToOne(() => Advertisements, (advertisements) => advertisements.userAdvertisements)
+    // advertisements: Advertisements;
 }

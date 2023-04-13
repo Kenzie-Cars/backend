@@ -20,6 +20,9 @@ export class Advertisements {
   @Column({ length: 50 })
   model: string;
 
+  @Column({ length: 50 })
+  year: string;
+
   @Column({ length: 20 })
   fuel: string;
 
@@ -38,16 +41,15 @@ export class Advertisements {
   @Column({ type: "decimal"})
   price: number;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn()
   created_at: Date;
-
-  @DeleteDateColumn({ type: "timestamp" })
+ 
+  @DeleteDateColumn()
   updated_at: Date;
 
-  @OneToMany(() => Users_advertisements, (userAdvertisements) => userAdvertisements.advertisements)
-  userAdvertisements: Users_advertisements[]
+  // @OneToMany(() => Users_advertisements, (userAdvertisements) => userAdvertisements.advertisements)
+  // userAdvertisements: Users_advertisements[]
 
-  @OneToMany(() => Images, (images) => images.images)
+  @OneToMany(() => Images, (images) => images.advertisement, {eager: true})
   images: Images[]
-
 }
