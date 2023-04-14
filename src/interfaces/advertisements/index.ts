@@ -1,6 +1,6 @@
 export interface IImages {
   url: string;
-  
+
 }
 
 export interface IImagesResponse {
@@ -21,6 +21,19 @@ export interface IAdvertisement {
   price: number;
 }
 
+export interface IUpdateAdvertisement {
+  brand?: string;
+  model?: string;
+  year?: string;
+  fuel?: string;
+  km?: number;
+  color?: string;
+  description?: string;
+  FIPE_price?: number;
+  price?: number;
+  images?: IImagesResponse[];
+}
+
 export interface IAdvertisementResponse {
   id: string;
   brand: string;
@@ -33,6 +46,6 @@ export interface IAdvertisementResponse {
   FIPE_price: number;
   price: number;
   images?: IImagesResponse[];
-  created_at?: Date 
+  created_at?: Date
   updated_at?: Date
 }
