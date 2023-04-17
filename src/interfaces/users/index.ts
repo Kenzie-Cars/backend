@@ -4,7 +4,7 @@ export interface IUser {
   cpf: string;
   phone: string;
   birthDate: Date;
-  description: Text;
+  description: string;
   is_adm: boolean;
   is_seller: boolean;
   address: IAddress;
@@ -15,7 +15,7 @@ export interface IUserResponse {
   cpf: string;
   phone: string;
   birthDate: Date;
-  description: Text;
+  description: string;
   is_adm: boolean;
   is_seller: boolean;
   is_active: boolean;
