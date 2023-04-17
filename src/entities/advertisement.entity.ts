@@ -41,14 +41,17 @@ export class Advertisements {
   @Column({ type: "decimal" })
   price: number;
 
+  @Column()
+  cover_img: string
+
   @CreateDateColumn()
   created_at: Date;
 
   @DeleteDateColumn()
   updated_at: Date;
 
-  // @OneToMany(() => Users_advertisements, (userAdvertisements) => userAdvertisements.advertisements)
-  // userAdvertisements: Users_advertisements[]
+  @OneToMany(() => Users_advertisements, (userAdvertisements) => userAdvertisements.advertisements)
+  userAdvertisements: Users_advertisements[]
 
   @OneToMany(() => Images, (images) => images.advertisement, { eager: true })
   images: Images[]
