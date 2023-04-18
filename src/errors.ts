@@ -8,7 +8,7 @@ const handleError = async (error: Error, req: Request, res: Response, next: Next
 
 
     return res.status(500).send({
-        message: 'Internal server error'
+        message: error.message
     })
 
 }

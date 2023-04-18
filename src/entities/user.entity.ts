@@ -10,6 +10,7 @@ import {
   OneToMany,
   OneToOne,
   JoinColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import { Users_advertisements } from "./users_advertisements.entity";
 import { Address } from "./address.entity";
@@ -19,20 +20,20 @@ export class Users {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({unique: true})
+  @Column({ unique: true })
   email: string;
 
   @Column()
   password: string;
 
-  @Column({unique: true})
+  @Column({ unique: true })
   cpf: string;
 
   @Column()
   phone: string;
 
   @Column()
-  birthDate: Date;
+  birthDate: string;
 
   @Column({ length: 500 })
   description: string;
@@ -40,7 +41,7 @@ export class Users {
   @Column()
   is_adm: boolean;
 
-  @Column()
+  @Column({ default: true })
   is_active: boolean;
 
   @Column()
@@ -49,7 +50,7 @@ export class Users {
   @CreateDateColumn({ type: "timestamp" })
   created_at: Date;
 
-  @DeleteDateColumn({ type: "timestamp" })
+  @UpdateDateColumn({ type: "timestamp" })
   updated_at: Date;
 
   @BeforeInsert()
@@ -61,11 +62,13 @@ export class Users {
     }
   }
 
-  @OneToMany(()=> Users_advertisements, (userAdvertisements)=> userAdvertisements.user)
-  userAdvertisements: Users_advertisements[]
+  @OneToMany(
+    () => Users_advertisements,
+    (userAdvertisements) => userAdvertisements.user
+  )
+  userAdvertisements: Users_advertisements[];
 
-  @OneToOne(()=> Address, (address)=> address.user)
+  @OneToOne(() => Address, (address) => address.user)
   @JoinColumn()
-  address: Address
-  
+  address: Address;
 }
