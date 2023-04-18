@@ -29,7 +29,7 @@ export const createUserService = async (
   const newUser = userRepository.create({
     ...userData, address:address
   });
-  console.log(newUser)
+
   await userRepository.save(newUser);
   const userResponse = await responseUserSerializer.validate(newUser, {
     stripUnknown: true,
