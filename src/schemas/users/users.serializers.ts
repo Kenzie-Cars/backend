@@ -2,6 +2,7 @@ import { IUserResponse } from "../../interfaces/users";
 import { SchemaOf } from "yup";
 import * as yup from "yup";
 import { addressSerializerResponse } from "../address/address.serializer";
+import { ListAdvertisementsSchema } from "../advertisement";
 
 export const responseUserSerializer: SchemaOf<IUserResponse> = yup.object().shape({
     id: yup.string(),
@@ -16,4 +17,5 @@ export const responseUserSerializer: SchemaOf<IUserResponse> = yup.object().shap
     created_at: yup.date(),
     updated_at: yup.date(),
     address: addressSerializerResponse,
-}).clone().noUnknown() as SchemaOf<IUserResponse>
+    userAdvertisements: ListAdvertisementsSchema
+}).clone() as SchemaOf<IUserResponse>
