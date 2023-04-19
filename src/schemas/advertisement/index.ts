@@ -11,6 +11,7 @@ export const AdvertisementSchema: any = yup.object().shape({
     km: yup.number().required(),
     FIPE_price: yup.number().required(),
     price: yup.number().required(),
+    cover_img: yup.string().required(),
     images: yup.array().required()
 })
 
@@ -24,6 +25,7 @@ export const UpdateAdvertisementSchema: any = yup.object().shape({
     km: yup.number(),
     FIPE_price: yup.number(),
     price: yup.number(),
+    cover_img: yup.string(),
     images: yup.array()
 })
 
@@ -38,6 +40,7 @@ export const ReturnAdvertisementSchema: any = yup.object().shape({
     km: yup.number().required(),
     FIPE_price: yup.number().required(),
     price: yup.number().required(),
+    cover_img: yup.string(),
     images: yup.array().of(yup
         .object()
         .shape({

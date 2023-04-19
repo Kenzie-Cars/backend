@@ -8,7 +8,6 @@ const validateSellerMiddleware = async (
   next: NextFunction
 ) => {
   const userRepository = AppDataSource.getRepository(Users);
-
   const seller = await userRepository.findOneBy({ id: req.user.id });
 
   if (!seller?.is_seller) {
