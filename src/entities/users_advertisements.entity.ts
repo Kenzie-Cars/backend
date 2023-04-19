@@ -16,6 +16,6 @@ export class Users_advertisements {
     @ManyToOne(() => Users, (user) => user.userAdvertisements)
     user: Users;
 
-    // @ManyToOne(() => Advertisements, (advertisements) => advertisements.userAdvertisements)
-    // advertisements: Advertisements;
+    @ManyToOne(() => Advertisements, (advertisements) => advertisements.userAdvertisements)
+    advertisements: Advertisements;
 }

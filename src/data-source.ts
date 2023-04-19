@@ -7,7 +7,10 @@ import { Advertisements } from "./entities/advertisement.entity";
 import { Images } from "./entities/images";
 import { Users } from "./entities/user.entity";
 import { Users_advertisements } from "./entities/users_advertisements.entity";
-import { InitialMigration1681348057123 } from "./migrations/1681348057123-InitialMigration";
+import { InitialMigration1681831427145 } from "./migrations/1681831427145-InitialMigration";
+import { fixIsActiveDefaultValue1681832231390 } from "./migrations/1681832231390-fixIsActiveDefaultValue";
+import { fixUpdateDateColumn1681836695652 } from "./migrations/1681836695652-fixUpdateDateColumn";
+
 
 const dataSourceConfig = (): DataSourceOptions => {
   const migrationsPath: string = path.join(
@@ -34,7 +37,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [Users, Address, Advertisements, Images, Users_advertisements],
-    migrations: [InitialMigration1681348057123],
+    migrations: [InitialMigration1681831427145, fixIsActiveDefaultValue1681832231390, fixUpdateDateColumn1681836695652],
   };
 };
 

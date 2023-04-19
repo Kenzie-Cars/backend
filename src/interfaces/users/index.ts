@@ -3,8 +3,8 @@ export interface IUser {
   password: string;
   cpf: string;
   phone: string;
-  birthDate: Date;
-  description: Text;
+  birthDate: string;
+  description: string;
   is_adm: boolean;
   is_seller: boolean;
   address: IAddress;
@@ -14,8 +14,8 @@ export interface IUserResponse {
   email: string;
   cpf: string;
   phone: string;
-  birthDate: Date;
-  description: Text;
+  birthDate: string;
+  description: string;
   is_adm: boolean;
   is_seller: boolean;
   is_active: boolean;
@@ -25,6 +25,15 @@ export interface IUserResponse {
 }
 
 export interface IAddress {
+  cep: string;
+  state: string;
+  city: string;
+  street: string;
+  number: string;
+  complement: string;
+}
+export interface IAddressResponse {
+  id: string;
   cep: string;
   state: string;
   city: string;

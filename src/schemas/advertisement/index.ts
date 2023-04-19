@@ -14,6 +14,19 @@ export const AdvertisementSchema: any = yup.object().shape({
     images: yup.array().required()
 })
 
+export const UpdateAdvertisementSchema: any = yup.object().shape({
+    brand: yup.string(),
+    model: yup.string(),
+    year: yup.string(),
+    fuel: yup.string(),
+    color: yup.string(),
+    description: yup.string(),
+    km: yup.number(),
+    FIPE_price: yup.number(),
+    price: yup.number(),
+    images: yup.array()
+})
+
 export const ReturnAdvertisementSchema: any = yup.object().shape({
     id: yup.string().uuid().required(),
     brand: yup.string().required(),

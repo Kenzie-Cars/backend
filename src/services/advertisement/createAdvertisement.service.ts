@@ -12,7 +12,7 @@ const createAdvertisementService = async (advertisementData: IAdvertisementRespo
     const { images, ...rest } = advertisementData;
 
     const advertisement: Advertisements = advertisementRepository.create(rest);
-    await advertisementRepository.save(advertisement);
+
 
     const imgs = [];
 
@@ -33,7 +33,9 @@ const createAdvertisementService = async (advertisementData: IAdvertisementRespo
 
     annoucements!.images = imgs
 
-    await advertisementRepository.save(rest)
+    await advertisementRepository.save(advertisement);
+
+    // await advertisementRepository.save(rest)
 
     const newAdvertisement = await ReturnAdvertisementSchema.validate(annoucements, {
         stripUnknown: true
