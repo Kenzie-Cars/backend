@@ -4,46 +4,56 @@ import { Advertisements } from "../../entities/advertisement.entity";
 import { Images } from "../../entities/images";
 import { IAdvertisementResponse } from "../../interfaces/advertisements";
 import { ReturnAdvertisementSchema } from "../../schemas/advertisement";
+import { Users } from "../../entities/user.entity";
+import { AppError } from "../../errors";
 
-const createAdvertisementService = async (advertisementData: IAdvertisementResponse) => {
+const createAdvertisementService = async (
+  advertisementData: IAdvertisementResponse,
+  userId: string
+) => {
+  const advertisementRepository: Repository<Advertisements> =
+    AppDataSource.getRepository(Advertisements);
+  const imagesRepository: Repository<Images> =
+    AppDataSource.getRepository(Images);
+  const userRepository: Repository<Users> = AppDataSource.getRepository(Users);
+  const { images, ...rest } = advertisementData;
 
-    const advertisementRepository: Repository<Advertisements> = AppDataSource.getRepository(Advertisements);
-    const imagesRepository: Repository<Images> = AppDataSource.getRepository(Images);
-    const { images, ...rest } = advertisementData;
+  const advertiser = await userRepository.findOneBy({ id: userId });
+  if (!advertiser) {
+    throw new AppError("Invalid user", 404);
+  }
+  const advertisement: Advertisements = advertisementRepository.create({...rest, user:advertiser});
+  const imgs = [];
 
-    const advertisement: Advertisements = advertisementRepository.create(rest);
+  // Crie as imagens e associe o ID do anúncio a cada imagem
+  for (let image of images!) {
+    // Atribua o ID do anúncio à propriedade FK da imagem
+    image.advertisementsId = advertisement.id;
 
+    const currentImage = imagesRepository.create(image);
+    await imagesRepository.save(currentImage);
+    imgs.push(currentImage);
+  }
 
-    const imgs = [];
+  // Atualize o anúncio com as imagens associadas
+  advertisement.images = imgs;
+  await advertisementRepository.save(advertisement);
 
-    // Crie as imagens e associe o ID do anúncio a cada imagem
-    for (let image of images!) {
-        // Atribua o ID do anúncio à propriedade FK da imagem
-        image.advertisementsId = advertisement.id;
+  const announcements = await advertisementRepository.findOneBy({
+    id: advertisement.id,
+  });
 
-        const currentImage = imagesRepository.create(image);
-        await imagesRepository.save(currentImage);
-        imgs.push(currentImage);
+  announcements!.images = imgs;
+
+  await advertisementRepository.save(advertisement);
+
+  const newAdvertisement = await ReturnAdvertisementSchema.validate(
+    announcements,
+    {
+      stripUnknown: true,
     }
+  );
 
-    // Atualize o anúncio com as imagens associadas
-    advertisement.images = imgs;
-    await advertisementRepository.save(advertisement);
-
-    const annoucements = await advertisementRepository.findOneBy({
-        id: advertisement.id
-    })
-
-    annoucements!.images = imgs
-
-    await advertisementRepository.save(advertisement);
-
-    // await advertisementRepository.save(rest)
-
-    const newAdvertisement = await ReturnAdvertisementSchema.validate(annoucements, {
-        stripUnknown: true
-    })
-
-    return newAdvertisement
-}
-export default createAdvertisementService
+  return newAdvertisement;
+};
+export default createAdvertisementService;

@@ -7,7 +7,8 @@ import deleteAdvertisementsService from "../services/advertisement/deleteAdverti
 
 const createAdvertisementController = async (req: Request, res: Response) => {
     const advertisementData: IAdvertisementResponse = req.body
-    const newAdvertisement = await createAdvertisementService(advertisementData)
+    const user = req.user.id
+    const newAdvertisement = await createAdvertisementService(advertisementData, user)
     return res.status(201).json(newAdvertisement)
 }
 

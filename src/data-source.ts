@@ -7,9 +7,7 @@ import { Advertisements } from "./entities/advertisement.entity";
 import { Images } from "./entities/images";
 import { Users } from "./entities/user.entity";
 import { Users_advertisements } from "./entities/users_advertisements.entity";
-import { InitialMigration1681831427145 } from "./migrations/1681831427145-InitialMigration";
-import { fixIsActiveDefaultValue1681832231390 } from "./migrations/1681832231390-fixIsActiveDefaultValue";
-import { fixUpdateDateColumn1681836695652 } from "./migrations/1681836695652-fixUpdateDateColumn";
+import { InitialMigration1681923069819 } from "./migrations/1681923069819-InitialMigration";
 
 
 const dataSourceConfig = (): DataSourceOptions => {
@@ -37,7 +35,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [Users, Address, Advertisements, Images, Users_advertisements],
-    migrations: [InitialMigration1681831427145, fixIsActiveDefaultValue1681832231390, fixUpdateDateColumn1681836695652],
+    migrations: [InitialMigration1681923069819],
   };
 };
 
