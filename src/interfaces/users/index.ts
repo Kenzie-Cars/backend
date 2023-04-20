@@ -9,6 +9,11 @@ export interface IUser {
   is_seller: boolean;
   address: IAddress;
 }
+
+export interface IUserLogin {
+  email: string;
+  password: string;
+}
 export interface IUserResponse {
   id: string;
   email: string;
