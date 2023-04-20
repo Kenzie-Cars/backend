@@ -5,7 +5,7 @@ import { addressSerializerResponse } from "../address/address.serializer";
 import { ListAdvertisementsSchema } from "../advertisement";
 
 export const userSerializer: SchemaOf<IUser> = yup.object().shape({
-    email: yup.string().email(),
+    email: yup.string().email().required(),
     password: yup.string().required().min(4),
     cpf: yup.string().min(11),
     phone: yup.string(),
