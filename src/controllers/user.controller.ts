@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { IUser } from "../interfaces/users";
 import { createUserService } from "../services/user/createUser.service";
 
 export const createUserController = async (req: Request, res: Response) => {

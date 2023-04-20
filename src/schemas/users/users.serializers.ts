@@ -14,8 +14,6 @@ export const userSerializer: SchemaOf<IUser> = yup.object().shape({
     is_adm: yup.boolean().notRequired(),
     is_seller: yup.boolean(),
     is_active: yup.boolean(),
-    created_at: yup.date(),
-    updated_at: yup.date(),
     address: addressSerializerResponse,
     userAdvertisements: ListAdvertisementsSchema.notRequired()
 }).clone() as SchemaOf<IUser>
