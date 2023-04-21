@@ -1,4 +1,5 @@
 export interface IUser {
+  name: string;
   email: string;
   password: string;
   cpf: string;
@@ -16,6 +17,7 @@ export interface IUserLogin {
 }
 export interface IUserResponse {
   id: string;
+  name: string;
   email: string;
   cpf: string;
   phone: string;
