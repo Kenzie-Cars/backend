@@ -52,7 +52,7 @@ export class Advertisements {
   @DeleteDateColumn()
   updated_at: Date;
 
-  @ManyToOne(() => Users, (user) => user.userAdvertisements)
+  @ManyToOne(() => Users, (user) => user.advertisements)
   user: Users;
 
   @OneToMany(
