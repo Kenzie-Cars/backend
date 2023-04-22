@@ -52,7 +52,7 @@ export class Advertisements {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @ManyToOne(() => Users, (user) => user.advertisements)
+  @ManyToOne(() => Users, (user) => user.advertisements, {onDelete: "CASCADE"})
   user: Users;
 
   @OneToMany(
