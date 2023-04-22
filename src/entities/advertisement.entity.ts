@@ -1,11 +1,11 @@
 import {
   Column,
   CreateDateColumn,
-  DeleteDateColumn,
   Entity,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import { Users_advertisements } from "./users_advertisements.entity";
 import { Images } from "./images";
@@ -49,10 +49,10 @@ export class Advertisements {
   @CreateDateColumn()
   created_at: Date;
 
-  @DeleteDateColumn()
+  @UpdateDateColumn()
   updated_at: Date;
 
-  @ManyToOne(() => Users, (user) => user.advertisements)
+  @ManyToOne(() => Users, (user) => user.advertisements, {onDelete: "CASCADE"})
   user: Users;
 
   @OneToMany(

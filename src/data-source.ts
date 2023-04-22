@@ -8,6 +8,7 @@ import { Images } from "./entities/images";
 import { Users } from "./entities/user.entity";
 import { Users_advertisements } from "./entities/users_advertisements.entity";
 import { InitialMigration1682077468804 } from "./migrations/1682077468804-InitialMigration";
+import { fixAdvertisementEntity1682080402875 } from "./migrations/1682080402875-fixAdvertisementEntity";
 
 
 
@@ -36,7 +37,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [Users, Address, Advertisements, Images, Users_advertisements],
-    migrations: [InitialMigration1682077468804],
+    migrations: [InitialMigration1682077468804, fixAdvertisementEntity1682080402875],
   };
 };
 
