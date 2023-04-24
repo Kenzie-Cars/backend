@@ -3,6 +3,7 @@ import {
   createUserController,
   deleteUserController,
   getUserController,
+  updateUserController,
 } from "../controllers/user.controller";
 import validateAdvertiseField from "../middlewares/validateAdvertiseField.middleware";
 import {
@@ -29,6 +30,13 @@ userRoutes.get(
   validateUuidMiddleware(Users),
   validateIsOwnerOrAdminMiddleware,
   getUserController
+);
+userRoutes.patch(
+  "/:id",
+  validateAuthMiddleware,
+  validateUuidMiddleware(Users),
+  validateIsOwnerOrAdminMiddleware,
+  updateUserController
 );
 userRoutes.delete(
   "/:id",
