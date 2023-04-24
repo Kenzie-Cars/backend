@@ -20,6 +20,9 @@ export class Users {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @Column()
+  name: string;
+  
   @Column({ unique: true })
   email: string;
 
@@ -53,16 +56,16 @@ export class Users {
   @UpdateDateColumn({ type: "timestamp" })
   updated_at: Date;
 
-  @BeforeInsert()
   @BeforeUpdate()
-  hashPassword() {
+  @BeforeInsert()
+  async hashPassword() {
     const isEncrypted = getRounds(this.password);
-    if (!isEncrypted) {
+    if (isEncrypted) {
       this.password = hashSync(this.password, 10);
     }
   }
-  @OneToMany(() => Advertisements, (advertisement) => advertisement.user)
-  advertisement: Advertisements;
+  @OneToMany(() => Advertisements, (advertisements) => advertisements.user)
+  advertisements: Advertisements[];
 
   @OneToMany(
     () => Users_advertisements,

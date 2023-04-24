@@ -7,9 +7,11 @@ import { Advertisements } from "./entities/advertisement.entity";
 import { Images } from "./entities/images";
 import { Users } from "./entities/user.entity";
 import { Users_advertisements } from "./entities/users_advertisements.entity";
+
 import { InitialMigration1681923069819 } from "./migrations/1681923069819-InitialMigration";
 import { AlterImageTable1682356619131 } from "./migrations/1682356619131-AlterImageTable";
 import { AlterImageNullable1682357257854 } from "./migrations/1682357257854-AlterImageNullable";
+
 
 
 const dataSourceConfig = (): DataSourceOptions => {
@@ -38,6 +40,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     logging: true,
     entities: [Users, Address, Advertisements, Images, Users_advertisements],
     migrations: [InitialMigration1681923069819, AlterImageTable1682356619131, AlterImageNullable1682357257854],
+
   };
 };
 

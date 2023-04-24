@@ -1,4 +1,5 @@
 export interface IUser {
+  name: string;
   email: string;
   password: string;
   cpf: string;
@@ -9,6 +10,18 @@ export interface IUser {
   is_seller: boolean;
   address: IAddress;
 }
+export interface IUserUpdate {
+  name?: string;
+  email?: string;
+  password?: string;
+  cpf?: string;
+  phone?: string;
+  birthDate?: string;
+  description?: string;
+  is_adm?: boolean;
+  is_seller?: boolean;
+  address?: IAddress;
+}
 
 export interface IUserLogin {
   email: string;
@@ -16,6 +29,7 @@ export interface IUserLogin {
 }
 export interface IUserResponse {
   id: string;
+  name: string;
   email: string;
   cpf: string;
   phone: string;
