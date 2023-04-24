@@ -4,6 +4,7 @@ import {
   listAdvertisementsController,
   updateAdvertisementsController,
   deleteAdvertisementsController,
+  getAdvertiseController,
 } from "../controllers/advertisement.controller";
 import validateDataMiddleware from "../middlewares/validateData.middleware";
 import { AdvertisementSchema } from "../schemas/advertisement";
@@ -23,6 +24,10 @@ advertisementsRouter.post(
   createAdvertisementController
 );
 advertisementsRouter.get("", listAdvertisementsController);
+advertisementsRouter.get("/:id", 
+validateUuidMiddleware(Advertisements),
+getAdvertiseController
+);
 advertisementsRouter.patch(
   "/:id",
   validateAuthMiddleware,
