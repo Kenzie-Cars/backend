@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
 import { IAdvertisementResponse } from "../interfaces/advertisements";
-import createAdvertisementService from "../services/advertisement/createAdvertisement.service";
 import ListAdvertisementService from "../services/advertisement/listAvertisemet.service";
 import updateAdvertisementsService from "../services/advertisement/updateAdvertisement.service";
 import deleteAdvertisementsService from "../services/advertisement/deleteAdvertisement.service";
+import createAdvertisementService from "../services/advertisement/createAdvertisement.service";
 
 const createAdvertisementController = async (req: Request, res: Response) => {
     const advertisementData: IAdvertisementResponse = req.body
-    const newAdvertisement = await createAdvertisementService(advertisementData)
+    const user = req.user.id
+    const newAdvertisement = await createAdvertisementService(advertisementData, user)
     return res.status(201).json(newAdvertisement)
 }
 

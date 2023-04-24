@@ -2,13 +2,13 @@ import { compare } from "bcryptjs";
 import { AppDataSource } from "../../data-source";
 import { Users } from "../../entities/user.entity";
 import { AppError } from "../../errors";
-import { IUserLogin } from "../../interfaces/users";
+import { IToken, IUserLogin } from "../../interfaces/users";
 import jwt from "jsonwebtoken";
 import "dotenv/config"
 export const createSessionService = async ({
   email,
   password,
-}: IUserLogin): Promise<string> => {
+}: IUserLogin): Promise<IToken> => {
   const userRepository = AppDataSource.getRepository(Users);
 
   const user = await userRepository.findOne({
@@ -35,5 +35,5 @@ export const createSessionService = async ({
         expiresIn: "24h"
     }
   );
-  return token
+  return { token, user };
 };

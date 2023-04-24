@@ -13,6 +13,7 @@ import {
 } from "typeorm";
 import { Users_advertisements } from "./users_advertisements.entity";
 import { Address } from "./address.entity";
+import { Advertisements } from "./advertisement.entity";
 
 @Entity("users")
 export class Users {
@@ -60,6 +61,8 @@ export class Users {
       this.password = hashSync(this.password, 10);
     }
   }
+  @OneToMany(() => Advertisements, (advertisement) => advertisement.user)
+  advertisement: Advertisements;
 
   @OneToMany(
     () => Users_advertisements,
