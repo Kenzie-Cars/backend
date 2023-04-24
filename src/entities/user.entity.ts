@@ -60,7 +60,7 @@ export class Users {
   @BeforeInsert()
   async hashPassword() {
     const isEncrypted = getRounds(this.password);
-    if (isEncrypted) {
+    if (!isEncrypted) {
       this.password = hashSync(this.password, 10);
     }
   }
