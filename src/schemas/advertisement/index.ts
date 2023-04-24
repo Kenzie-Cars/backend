@@ -45,7 +45,12 @@ export const ReturnAdvertisementSchema: any = yup.object().shape({
         .object()
         .shape({
             id: yup.string().uuid().optional(),
-            url: yup.string().optional(),
+            image1: yup.string().optional().nullable(true),
+            image2: yup.string().optional().nullable(true),
+            image3: yup.string().optional().nullable(true),
+            image4: yup.string().optional().nullable(true),
+            image5: yup.string().optional().nullable(true),
+            image6: yup.string().optional().nullable(true),
             advertisementId: yup.string().uuid().optional()
         })).required(),
     created_at: yup.date().nullable().default(null),

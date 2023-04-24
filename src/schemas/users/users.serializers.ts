@@ -12,7 +12,7 @@ export const userSerializer: SchemaOf<IUser> = yup.object().shape({
     phone: yup.string().required("Phone field is required.").min(9),
     birthDate: yup.string().min(8),
     description: yup.string().required("Write a description"),
-    is_adm: yup.boolean().notRequired(),
+    is_adm: yup.boolean().notRequired().default(false),
     is_seller: yup.boolean(),
     address: addressSerializerResponse,
     userAdvertisements: ListAdvertisementsSchema.notRequired()

@@ -1,11 +1,21 @@
 export interface IImages {
-  url: string;
+  image1: string;
+  image2: string;
+  image3: string;
+  image4: string;
+  image5: string;
+  image6: string;
 
 }
 
 export interface IImagesResponse {
   id: string;
-  url: string;
+  image1?: string;
+  image2?: string;
+  image3?: string;
+  image4?: string;
+  image5?: string;
+  image6?: string;
   advertisementsId: string
 }
 

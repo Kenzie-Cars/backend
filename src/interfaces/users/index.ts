@@ -6,7 +6,7 @@ export interface IUser {
   phone: string;
   birthDate: string;
   description: string;
-  is_adm: boolean;
+  is_adm?: boolean;
   is_seller: boolean;
   address: IAddress;
 }
@@ -42,7 +42,11 @@ export interface IUserResponse {
   updated_at: Date;
   address: IAddress;
 }
-
+43
+export interface IToken {
+  token: string;
+  user: IUserResponse;
+}
 export interface IAddress {
   cep: string;
   state: string;
