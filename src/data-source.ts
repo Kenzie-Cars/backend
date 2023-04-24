@@ -8,7 +8,8 @@ import { Images } from "./entities/images";
 import { Users } from "./entities/user.entity";
 import { Users_advertisements } from "./entities/users_advertisements.entity";
 
-import { InitialMigration1681923069819 } from "./migrations/1681923069819-InitialMigration";
+import { InitialMigration1682077468804 } from "./migrations/1682077468804-InitialMigration";
+import { fixAdvertisementEntity1682080402875 } from "./migrations/1682080402875-fixAdvertisementEntity";
 import { AlterImageTable1682356619131 } from "./migrations/1682356619131-AlterImageTable";
 import { AlterImageNullable1682357257854 } from "./migrations/1682357257854-AlterImageNullable";
 
@@ -21,7 +22,7 @@ const dataSourceConfig = (): DataSourceOptions => {
   );
   const dbUrl: string | undefined = process.env.DATABASE_URL;
   if (!dbUrl) {
-    throw new Error("Var env DATABASE_URL was not defined");''
+    throw new Error("Var env DATABASE_URL was not defined"); ''
   }
 
   const nodeEnv: string | undefined = process.env.NODE_ENV;
@@ -39,7 +40,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [Users, Address, Advertisements, Images, Users_advertisements],
-    migrations: [InitialMigration1681923069819, AlterImageTable1682356619131, AlterImageNullable1682357257854],
+    migrations: [InitialMigration1682077468804, fixAdvertisementEntity1682080402875, AlterImageTable1682356619131, AlterImageNullable1682357257854],
 
   };
 };
