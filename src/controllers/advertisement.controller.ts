@@ -19,8 +19,8 @@ const listAdvertisementsController = async (req: Request, res: Response) => {
 }
 const getAdvertiseController = async (req: Request, res: Response) => {
     const advertiseId = req.params.id
-    const advertse = await getAdvertiseService(advertiseId)
-    return res.status(200).json(advertse)
+    const advertise = await getAdvertiseService(advertiseId)
+    return res.status(200).json(advertise)
 }
 
 const updateAdvertisementsController = async (req: Request, res: Response) => {
