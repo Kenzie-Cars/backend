@@ -19,7 +19,7 @@ const dataSourceConfig = (): DataSourceOptions => {
   );
   const dbUrl: string | undefined = process.env.DATABASE_URL;
   if (!dbUrl) {
-    throw new Error("Var env DATABASE_URL was not defined");
+    throw new Error("Var env DATABASE_URL was not defined");''
   }
 
   const nodeEnv: string | undefined = process.env.NODE_ENV;
