@@ -25,6 +25,8 @@ export interface IAdvertisement {
   year: string;
   fuel: string;
   km: number;
+  is_goodSale: boolean
+  is_active: boolean
   color: string;
   description: string;
   FIPE_price: number;
