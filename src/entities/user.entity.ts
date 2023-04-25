@@ -41,7 +41,7 @@ export class Users {
   @Column({ length: 500 })
   description: string;
 
-  @Column()
+  @Column({default:false})
   is_adm: boolean;
 
   @Column({ default: true })
