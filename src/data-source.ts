@@ -12,6 +12,7 @@ import { InitialMigration1682077468804 } from "./migrations/1682077468804-Initia
 import { fixAdvertisementEntity1682080402875 } from "./migrations/1682080402875-fixAdvertisementEntity";
 import { AlterImageTable1682356619131 } from "./migrations/1682356619131-AlterImageTable";
 import { AlterImageNullable1682357257854 } from "./migrations/1682357257854-AlterImageNullable";
+import { AlterAdvTable1682384912463 } from "./migrations/1682384912463-AlterAdvTable";
 
 
 
@@ -40,7 +41,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [Users, Address, Advertisements, Images, Users_advertisements],
-    migrations: [InitialMigration1682077468804, fixAdvertisementEntity1682080402875, AlterImageTable1682356619131, AlterImageNullable1682357257854],
+    migrations: [InitialMigration1682077468804, fixAdvertisementEntity1682080402875, AlterImageTable1682356619131, AlterImageNullable1682357257854, AlterAdvTable1682384912463],
 
   };
 };
