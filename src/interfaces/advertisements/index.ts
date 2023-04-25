@@ -29,7 +29,6 @@ export interface IAdvertisement {
   is_active: boolean
   color: string;
   description: string;
-  FIPE_price: number;
   price: number;
 }
 
