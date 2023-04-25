@@ -37,8 +37,11 @@ export class Advertisements {
   @Column()
   km: number;
 
-  @Column({ type: "decimal" })
-  FIPE_price: number;
+  @Column()
+  is_goodSale: boolean;
+
+  @Column()
+  is_active: boolean;
 
   @Column({ type: "decimal" })
   price: number;

@@ -9,7 +9,8 @@ export const AdvertisementSchema: any = yup.object().shape({
     color: yup.string().required(),
     description: yup.string().required(),
     km: yup.number().required(),
-    FIPE_price: yup.number().required(),
+    is_goodSale: yup.boolean().default(false),
+    is_active: yup.boolean().required(),
     price: yup.number().required(),
     cover_img: yup.string().required(),
     images: yup.array().required()
