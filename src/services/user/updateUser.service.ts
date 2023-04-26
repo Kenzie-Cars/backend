@@ -5,6 +5,7 @@ import { Address } from "../../entities/address.entity";
 import { AppError } from "../../errors";
 import { IUserUpdate } from "../../interfaces/users";
 import { responseUserSerializer } from "../../schemas/users/users.serializers";
+import { hashSync } from "bcryptjs";
 
 export const updateUserService = async (
   dataToUpdate: IUserUpdate,
@@ -18,10 +19,15 @@ export const updateUserService = async (
     throw new AppError("User not found", 404);
   }
 
+  if(rest.password){
+    rest.password = hashSync(rest.password, 10)
+  }
+
   await userRepository.update({ id: userId }, rest);
 
   if (address) {
-    const addressRepository: Repository<Address> = AppDataSource.getRepository(Address);
+    const addressRepository: Repository<Address> =
+      AppDataSource.getRepository(Address);
     const userAddress = await addressRepository.findOne({
       where: { user: { id: user.id } },
     });
@@ -29,12 +35,15 @@ export const updateUserService = async (
       await addressRepository.update({ id: userAddress.id }, address);
     }
 
-    const updatedUser = await userRepository.findOne({ where: { id: userId } });
-    // const userResponse = await responseUserSerializer.validate(updatedUser, {
-    //   stripUnknown: true,
-    //   abortEarly: false,
-    // });
+    const updatedUser = await userRepository.findOne({
+      where: { id: userId },
+      relations: { address: true },
+    });
+    const userResponse = await responseUserSerializer.validate(updatedUser, {
+      stripUnknown: true,
+      abortEarly: false,
+    });
 
-    return updatedUser;
+    return userResponse;
   }
 };

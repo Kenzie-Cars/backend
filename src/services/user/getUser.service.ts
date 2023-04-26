@@ -18,7 +18,9 @@ export const getUserService = async (userId: string) => {
       advertisements: true,
     },
     relations: {
-      advertisements: true,
+      advertisements: {
+        user: true,
+      },
     },
   });
 
