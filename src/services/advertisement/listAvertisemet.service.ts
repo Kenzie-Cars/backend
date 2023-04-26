@@ -11,6 +11,7 @@ const ListAdvertisementService = async () => {
         user: {
             id: true,
             email: true,
+            name: true
         }
     },
     relations: {
