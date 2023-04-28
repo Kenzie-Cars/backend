@@ -13,7 +13,7 @@ import { fixAdvertisementEntity1682080402875 } from "./migrations/1682080402875-
 import { AlterImageTable1682356619131 } from "./migrations/1682356619131-AlterImageTable";
 import { AlterImageNullable1682357257854 } from "./migrations/1682357257854-AlterImageNullable";
 import { AlterAdvTable1682384912463 } from "./migrations/1682384912463-AlterAdvTable";
-
+import { CreatePasswordResetToken1682682965227 } from "./migrations/1682682965227-createPasswordResetToken";
 
 
 const dataSourceConfig = (): DataSourceOptions => {
@@ -41,7 +41,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [Users, Address, Advertisements, Images, Users_advertisements],
-    migrations: [InitialMigration1682077468804, fixAdvertisementEntity1682080402875, AlterImageTable1682356619131, AlterImageNullable1682357257854, AlterAdvTable1682384912463],
+    migrations: [InitialMigration1682077468804, fixAdvertisementEntity1682080402875, AlterImageTable1682356619131, AlterImageNullable1682357257854, AlterAdvTable1682384912463, CreatePasswordResetToken1682682965227],
 
   };
 };

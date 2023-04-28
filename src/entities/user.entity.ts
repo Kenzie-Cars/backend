@@ -64,6 +64,13 @@ export class Users {
       this.password = hashSync(this.password, 10);
     }
   }
+
+  @Column({unique: true, nullable: true})
+  passwordResetToken: string;
+
+  @Column({type: 'timestamp', nullable: true})
+  passwordResetedAt: Date;
+
   @OneToMany(() => Advertisements, (advertisements) => advertisements.user)
   advertisements: Advertisements[];
 

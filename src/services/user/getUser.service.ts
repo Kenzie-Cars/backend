@@ -15,6 +15,7 @@ export const getUserService = async (userId: string) => {
       email: true,
       phone: true,
       cpf: true,
+      description: true,
       advertisements: true,
     },
     relations: {

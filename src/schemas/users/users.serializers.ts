@@ -1,4 +1,4 @@
-import { IUser, IUserResponse } from "../../interfaces/users";
+import { IPasswordForgot, IPasswordReset, IUser, IUserResponse } from "../../interfaces/users";
 import { SchemaOf } from "yup";
 import * as yup from "yup";
 import { addressSerializerResponse } from "../address/address.serializer";
@@ -34,3 +34,12 @@ export const responseUserSerializer: SchemaOf<IUserResponse> = yup.object().shap
     address: addressSerializerResponse,
     userAdvertisements: ListAdvertisementsSchema
 }).clone() as SchemaOf<IUserResponse>
+
+export const forgotPasswordSerializer: SchemaOf<IPasswordForgot> = yup.object().shape({
+    email: yup.string().email('Email is invalid').required('please enter your email')
+})
+
+export const resetPasswordSerializer: SchemaOf<IPasswordReset> = yup.object().shape({
+    password: yup.string().required('please enter your new password'),
+    passwordConfirmation: yup.string().required('enter password confirmation').oneOf([yup.ref('password'), null], "passwords do not match!")
+})
