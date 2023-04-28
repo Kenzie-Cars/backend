@@ -4,7 +4,7 @@ import { Users } from "../../entities/user.entity";
 import { AppError } from "../../errors";
 import { IToken, IUserLogin } from "../../interfaces/users";
 import jwt from "jsonwebtoken";
-import "dotenv/config"
+import "dotenv/config";
 export const createSessionService = async ({
   email,
   password,
@@ -13,6 +13,7 @@ export const createSessionService = async ({
 
   const user = await userRepository.findOne({
     where: { email: email },
+    relations: { address: true },
     withDeleted: true,
   });
 
@@ -27,13 +28,13 @@ export const createSessionService = async ({
 
   const token = jwt.sign(
     {
-        is_active: user.is_active,
+      is_active: user.is_active,
     },
     process.env.SECRET_KEY!,
     {
-        subject:user.id,
-        expiresIn: "24h"
-    }
+      subject: user.id,
+      expiresIn: "24h",
+    },
   );
   return { token, user };
 };
