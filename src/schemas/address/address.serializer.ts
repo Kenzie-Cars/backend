@@ -1,14 +1,23 @@
-import { IAddress, IAddressResponse } from "../../interfaces/users";
+import { IAddress, IAddressResponse, IAddressUpdate } from "../../interfaces/users";
 import { SchemaOf } from "yup";
 import * as yup from "yup";
 
 
 export const addressSerializerResponse: SchemaOf<IAddressResponse> = yup.object().shape({
     id: yup.string(),
-    cep: yup.string().required("This information need to be provided. ").min(8),
-    state: yup.string().required("This information need to be provided. ").min(2).max(2),
-    city: yup.string().required("This information need to be provided. ").min(3),
-    street: yup.string().required("This information need to be provided. "),
-    number: yup.string().required("This information need to be provided. "),
-    complement: yup.string().required("This information need to be provided. "),
+    cep: yup.string(),
+    state: yup.string(),
+    city: yup.string(),
+    street: yup.string(),
+    number: yup.string(),
+    complement: yup.string(),
 }).clone().noUnknown() as SchemaOf<IAddressResponse>
+
+// export const addressSerializerUpdate: SchemaOf<IAddressUpdate> = yup.object().shape({
+//     cep: yup.string().notRequired(),
+//     state: yup.string().notRequired(),
+//     city: yup.string().notRequired(),
+//     street: yup.string().notRequired(),
+//     number: yup.string().notRequired(),
+//     complement: yup.string().notRequired()
+// })
