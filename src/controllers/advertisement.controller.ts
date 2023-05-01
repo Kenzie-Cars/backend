@@ -14,8 +14,14 @@ const createAdvertisementController = async (req: Request, res: Response) => {
     return res.status(201).json(newAdvertisement)
 }
 
+// const listAdvertisementsController = async (req: Request, res: Response) => {
+//     const listAdvertsements = await ListAdvertisementService()
+//     return res.status(200).json(listAdvertsements)
+// }
+
 const listAdvertisementsController = async (req: Request, res: Response) => {
-    const listAdvertsements = await ListAdvertisementService()
+    const listAdvertsements = await ListAdvertisementService(req.query)
+    console.log(req.query)
     return res.status(200).json(listAdvertsements)
 }
 const getAdvertiseController = async (req: Request, res: Response) => {
