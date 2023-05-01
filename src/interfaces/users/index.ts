@@ -8,7 +8,7 @@ export interface IUser {
   description: string;
   is_adm?: boolean;
   is_seller: boolean;
-  address: IAddress;
+  address?: IAddress | undefined;
 }
 export interface IUserUpdate {
   name?: string;
@@ -18,7 +18,6 @@ export interface IUserUpdate {
   phone?: string;
   birthDate?: string;
   description?: string;
-  is_adm?: boolean;
   is_seller?: boolean;
   address?: IAddress;
 }
@@ -42,7 +41,7 @@ export interface IUserResponse {
   updated_at: Date;
   address: IAddress;
 }
-43
+
 export interface IToken {
   token: string;
   user: IUserResponse;
@@ -54,6 +53,14 @@ export interface IAddress {
   street: string;
   number: string;
   complement: string;
+}
+export interface IAddressUpdate {
+  cep?: string;
+  state?: string;
+  city?: string;
+  street?: string;
+  number?: string;
+  complement?: string;
 }
 export interface IAddressResponse {
   id: string;

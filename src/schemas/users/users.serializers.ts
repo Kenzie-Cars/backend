@@ -1,4 +1,4 @@
-import { IUser, IUserResponse } from "../../interfaces/users";
+import { IUser, IUserResponse} from "../../interfaces/users";
 import { SchemaOf } from "yup";
 import * as yup from "yup";
 import { addressSerializerResponse } from "../address/address.serializer";
