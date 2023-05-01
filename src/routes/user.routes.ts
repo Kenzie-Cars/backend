@@ -7,6 +7,8 @@ import {
 } from "../controllers/user.controller";
 import validateAdvertiseField from "../middlewares/validateAdvertiseField.middleware";
 import {
+  forgotPasswordSerializer,
+  resetPasswordSerializer,
   responseUserSerializer,
   userSerializer,
 } from "../schemas/users/users.serializers";
@@ -15,8 +17,14 @@ import validateUuidMiddleware from "../middlewares/validateUuid.middleware";
 import { Users } from "../entities/user.entity";
 import validateIsOwnerOrAdminMiddleware from "../middlewares/validateIsOwnerOrAdmin.middleware";
 import validateAuthMiddleware from "../middlewares/validateAuth.middleware";
+import { resetPasswordController } from "../controllers/auth/passwordRecovery.controller";
+import { forgotPasswordController } from "../controllers/auth/forgotPassword.controller";
 
 export const userRoutes: Router = Router();
+
+export const passwordResetRoutes: Router = Router()
+
+export const passwordForgotRoutes: Router = Router()
 
 userRoutes.post(
   "",
@@ -26,9 +34,9 @@ userRoutes.post(
 );
 userRoutes.get(
   "/:id",
-  validateAuthMiddleware,
-  validateUuidMiddleware(Users),
-  validateIsOwnerOrAdminMiddleware,
+  // validateAuthMiddleware,
+  // validateUuidMiddleware(Users),
+  // validateIsOwnerOrAdminMiddleware,
   getUserController
 );
 userRoutes.patch(
@@ -45,3 +53,15 @@ userRoutes.delete(
   validateIsOwnerOrAdminMiddleware,
   deleteUserController
 );
+
+passwordForgotRoutes.post(
+  '/:userId',
+  validateDataMiddleware(forgotPasswordSerializer),
+  forgotPasswordController
+)
+
+passwordResetRoutes.patch(
+  '/:userId/:resetToken',
+  validateDataMiddleware(resetPasswordSerializer),
+  resetPasswordController
+)

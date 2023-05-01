@@ -71,3 +71,12 @@ export interface IAddressResponse {
   number: string;
   complement: string;
 }
+
+export interface IPasswordForgot {
+  email: string
+}
+
+export interface IPasswordReset {
+  password: string
+  passwordConfirmation: string
+}
