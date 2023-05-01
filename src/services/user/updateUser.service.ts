@@ -5,7 +5,6 @@ import { Address } from "../../entities/address.entity";
 import { AppError } from "../../errors";
 import { IUserUpdate } from "../../interfaces/users";
 import { responseUserSerializer } from "../../schemas/users/users.serializers";
-import { hashSync } from "bcryptjs";
 
 export const updateUserService = async (
   dataToUpdate: IUserUpdate,
@@ -14,16 +13,17 @@ export const updateUserService = async (
   const userRepository: Repository<Users> = AppDataSource.getRepository(Users);
 
   const { address, ...rest } = dataToUpdate;
-  const user = await userRepository.findOne({ where: { id: userId } });
+  const user = await userRepository.findOne({
+    where: { id: userId },
+  });
   if (!user) {
     throw new AppError("User not found", 404);
   }
 
-  if(rest.password){
-    rest.password = hashSync(rest.password, 10)
-  }
+  const updatedUser = userRepository.create({ ...user, ...rest });
+  await userRepository.save(updatedUser);
 
-  await userRepository.update({ id: userId }, rest);
+  let newAddress;
 
   if (address) {
     const addressRepository: Repository<Address> =
@@ -31,19 +31,21 @@ export const updateUserService = async (
     const userAddress = await addressRepository.findOne({
       where: { user: { id: user.id } },
     });
+
     if (userAddress) {
-      await addressRepository.update({ id: userAddress.id }, address);
+      newAddress = addressRepository.create({
+        ...userAddress,
+        ...address,
+      });
+      addressRepository.save(newAddress);
     }
-
-    const updatedUser = await userRepository.findOne({
-      where: { id: userId },
-      relations: { address: true },
-    });
-    const userResponse = await responseUserSerializer.validate(updatedUser, {
-      stripUnknown: true,
-      abortEarly: false,
-    });
-
-    return userResponse;
   }
+
+  console.log(user.address);
+  const userResponse = await responseUserSerializer.validate(updatedUser, {
+    stripUnknown: true,
+    abortEarly: false,
+  });
+
+  return { ...userResponse, address: newAddress };
 };
