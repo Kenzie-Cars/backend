@@ -55,13 +55,13 @@ userRoutes.delete(
 );
 
 passwordForgotRoutes.post(
-  '/:userId',
+  '',
   validateDataMiddleware(forgotPasswordSerializer),
   forgotPasswordController
 )
 
 passwordResetRoutes.patch(
-  '/:userId/:resetToken',
+  '/:resetToken',
   validateDataMiddleware(resetPasswordSerializer),
   resetPasswordController
 )
