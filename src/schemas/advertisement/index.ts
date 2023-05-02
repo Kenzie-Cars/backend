@@ -31,16 +31,16 @@ export const UpdateAdvertisementSchema: any = yup.object().shape({
 })
 
 export const ReturnAdvertisementSchema: any = yup.object().shape({
-    id: yup.string().uuid().required(),
-    brand: yup.string().required(),
-    model: yup.string().required(),
-    year: yup.string().required(),
-    fuel: yup.string().required(),
-    color: yup.string().required(),
-    description: yup.string().required(),
-    km: yup.number().required(),
-    FIPE_price: yup.number().required(),
-    price: yup.number().required(),
+    id: yup.string().uuid(),
+    brand: yup.string(),
+    model: yup.string(),
+    year: yup.string(),
+    fuel: yup.string(),
+    color: yup.string(),
+    description: yup.string(),
+    km: yup.number(),
+    FIPE_price: yup.number(),
+    price: yup.number(),
     cover_img: yup.string(),
     images: yup.array().of(yup
         .object()
@@ -53,7 +53,7 @@ export const ReturnAdvertisementSchema: any = yup.object().shape({
             image5: yup.string().optional().nullable(true),
             image6: yup.string().optional().nullable(true),
             advertisementId: yup.string().uuid().optional()
-        })).required(),
+        })),
     created_at: yup.date().nullable().default(null),
     updated_at: yup.date().nullable().default(null)
 });
