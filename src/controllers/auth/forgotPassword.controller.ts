@@ -7,10 +7,9 @@ import nodemailer from 'nodemailer'
 export const forgotPasswordController = async(req: Request, res: Response) => {
     const userRepository: Repository<Users> = AppDataSource.getRepository(Users);
 
-    const message = 'You will receive a recovery email if a user with that email exists'
+    const message = 'Você receberá um email com o link de recuperação caso um usuário com este email cadastrado exista'
 
     const {email} = req.body
-    const {userId} =req.params
 
     const user = await userRepository.findOne({
         where: { email: email },
@@ -44,7 +43,7 @@ export const forgotPasswordController = async(req: Request, res: Response) => {
         const passwordResetToken = createHash('sha256').update(resetToken).digest('hex')
 
         await userRepository.update(
-            {id: userId}, 
+            {id: user.id}, 
             {
                 passwordResetToken: passwordResetToken
             }
@@ -54,8 +53,8 @@ export const forgotPasswordController = async(req: Request, res: Response) => {
             from: '"kenzie cars" <kenziekars@kenzie.com>', 
             to: email, 
             subject: "Password recovery", 
-            text: `send a patch request to http://localhost:3000/resetPassword/${passwordResetToken}`, 
-            html: `send a patch request to http://localhost:3000/resetPassword/${passwordResetToken}`, 
+            text: `Seu link de recuperação: http://127.0.0.1:5173/change-password/${passwordResetToken}`, 
+            html: `Seu link de recuperação: <a href="http://127.0.0.1:5173/change-password/${passwordResetToken}"> clique aqui</a>`, 
         });
 
         console.log("Message sent: %s", info.messageId);

@@ -5,13 +5,13 @@ import { Repository } from "typeorm";
 import { hashSync } from "bcryptjs";
 
 export const resetPasswordController = async (req: Request, res: Response) => {
-    const {resetToken, userId} = req.params
+    const {resetToken} = req.params
 
     const {password} = req.body
 
     const userRepository: Repository<Users> = AppDataSource.getRepository(Users);
 
-    const user = userRepository.findOne({where: {passwordResetToken: resetToken}})
+    const user = await userRepository.findOne({where: {passwordResetToken: resetToken}})
 
     if(!user){
         return res.status(401).json({
@@ -22,10 +22,10 @@ export const resetPasswordController = async (req: Request, res: Response) => {
 
     const newPassword = hashSync(password, 10)
 
-    await userRepository.update({id: userId}, {password: newPassword})
+    await userRepository.update({id: user.id}, {password: newPassword})
 
     return res.status(200).json({
         status: 'success',
-        message: 'password was successfully reset'
+        message: 'senha alterada com sucesso'
     })
   };
