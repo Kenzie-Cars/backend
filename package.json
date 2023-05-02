@@ -6,6 +6,8 @@
   "author": "<dreicleal@hotmail.com>",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
     "dev": "ts-node-dev --ignore-watch node_modules --cls --rs src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "test": "NODE_ENV=test jest --verbose --runInBand"
