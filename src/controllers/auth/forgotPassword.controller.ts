@@ -59,17 +59,24 @@ export const forgotPasswordController = async(req: Request, res: Response) => {
 
         console.log("Message sent: %s", info.messageId);
 
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+        const previewLink = nodemailer.getTestMessageUrl(info)
+
+        console.log("Preview URL: %s", previewLink);
+
+        return previewLink.toString()
     }
 
     try {
-        sendEmail()
+       const link = await sendEmail()
+
+       return res.status(200).json({
+        status: 'success',
+        message,
+        link
+        })
+
     } catch (error) {
         console.error(error)
     }
-
-    return res.status(200).json({
-        status: 'success',
-        message
-    })
 }
+    
