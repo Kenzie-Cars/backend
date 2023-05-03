@@ -28,10 +28,10 @@ const ListAdvertisementService = async (query: any) => {
   if (query.kmMax == '') {
     query.maxKm = undefined
   }
-  if (query.yearMax == '') {
+  if (query.priceMax == '') {
     query.maxKm = undefined
   }
-  if (query.yearMax == '') {
+  if (query.priceMax == '') {
     query.maxKm = undefined
   }
 
@@ -51,9 +51,10 @@ const ListAdvertisementService = async (query: any) => {
       brand: query.brand,
       color: query.color,
       model: query.model,
-      year: query.year || Between(Number(query.yearMin) || 1900, Number(query.yearMax) || 2100),
+      year: query.year,
       fuel: query.fuel,
       km: Between(Number(query.kmMin) || 0, Number(query.kmMax) || 100000),
+      price: Between(Number(query.priceMin) || 0, Number(query.priceMax) || 10000000),
     }
 
   });
