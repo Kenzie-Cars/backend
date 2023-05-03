@@ -16,11 +16,14 @@ export const getAdvertiseService = async (adId: string) => {
             name: true,
             description:true,
             phone: true,
-        }
+        },
+        userAdvertisements: true,
+
     },
     relations: {
       user: true,
       images: true,
+      userAdvertisements: true,
     },
   });
 
