@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { createCommentsService } from "../services/comments/createComments.service";
-import { deleteCommentsService } from "../services/comments/deleteComments.ervice";
+import { deleteCommentsService } from "../services/comments/deleteComments.service";
+import { updateCommentsService } from "../services/comments/updateComments.service";
 
 export const createCommentsController = async (req: Request, res: Response) => {
     const userId = req.user.id;
@@ -16,4 +17,11 @@ export const deleteCommentsController = async (req:Request, res:Response) => {
     const commentId = req.params.id
     await deleteCommentsService(commentId)
     return res.status(204).json()
+}
+
+export const updateCommentsController = async (req:Request, res:Response) => {
+    const commentId = req.params.id
+    const {comment} = req.body
+    const updatedComment = await updateCommentsService(comment, commentId)
+    return res.status(200).json(updatedComment)
 }

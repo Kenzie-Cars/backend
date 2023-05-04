@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, DeleteDateColumn, Column} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, Column, UpdateDateColumn} from "typeorm";
 import { Advertisements } from "./advertisement.entity";
 import { Users } from "./user.entity";
 
@@ -13,7 +13,7 @@ export class Users_advertisements {
     @CreateDateColumn({ type: "timestamp" })
     created_at: Date;
   
-    @DeleteDateColumn({ type: "timestamp" })
+    @UpdateDateColumn({ type: "timestamp" })
     updated_at: Date;
 
     @ManyToOne(() => Users, (user) => user.userAdvertisements)
