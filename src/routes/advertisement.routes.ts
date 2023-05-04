@@ -13,7 +13,7 @@ import validateSellerMiddleware from "../middlewares/validateSeller.middleware";
 import validateUuidMiddleware from "../middlewares/validateUuid.middleware";
 import { Advertisements } from "../entities/advertisement.entity";
 import validateAdvertiseOwnerMiddleware from "../middlewares/validateAdvertiseOwner.middleware";
-import { createCommentsController } from "../controllers/comment.controller";
+import { createCommentsController, deleteCommentsController } from "../controllers/comment.controller";
 
 const advertisementsRouter = Router();
 
@@ -49,9 +49,12 @@ advertisementsRouter.delete(
 advertisementsRouter.post(
   "/comments/:id",
   validateAuthMiddleware,
-  // validateSellerMiddleware,
-  // validateDataMiddleware(AdvertisementSchema),
   createCommentsController
+);
+advertisementsRouter.delete(
+  "/comments/:id",
+  validateAuthMiddleware,
+  deleteCommentsController
 );
 
 export default advertisementsRouter;
