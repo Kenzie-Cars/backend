@@ -9,9 +9,5 @@ export const deleteCommentsService = async (commentId: string) => {
 
   const comment = await commentsRepository.findOneBy({ id: commentId });
 
-  if (!comment) {
-    throw new AppError("No comment found", 404);
-  }
-
-  await commentsRepository.remove(comment);
+  await commentsRepository.remove(comment!);
 };

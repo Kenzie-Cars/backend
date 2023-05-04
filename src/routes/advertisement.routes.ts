@@ -14,6 +14,7 @@ import validateUuidMiddleware from "../middlewares/validateUuid.middleware";
 import { Advertisements } from "../entities/advertisement.entity";
 import validateAdvertiseOwnerMiddleware from "../middlewares/validateAdvertiseOwner.middleware";
 import { createCommentsController, deleteCommentsController } from "../controllers/comment.controller";
+import validateCommentOrAdvertiseMiddleware from "../middlewares/validateCommentOrAdvertiseOwner.middleware";
 
 const advertisementsRouter = Router();
 
@@ -54,6 +55,7 @@ advertisementsRouter.post(
 advertisementsRouter.delete(
   "/comments/:id",
   validateAuthMiddleware,
+  validateCommentOrAdvertiseMiddleware,
   deleteCommentsController
 );
 
