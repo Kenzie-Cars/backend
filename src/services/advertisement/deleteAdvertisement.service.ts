@@ -13,7 +13,7 @@ const deleteAdvertisementsService = async (id: string) => {
     })
 
     if (!advertisement) {
-        throw new AppError('Not found')
+        throw new AppError('Not found', 404)
     }
 
     await advertisementRepository.remove(advertisement)

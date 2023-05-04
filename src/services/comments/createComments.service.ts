@@ -33,7 +33,7 @@ export const createCommentsService = async (
   const commentsResponse = commentsRepository.create({});
   await commentsRepository.save(commentsResponse);
 
-  const nComment = await commentsRepository.update(
+  await commentsRepository.update(
     { id: commentsResponse.id },
     {
       advertisements: foundAdvertise,
