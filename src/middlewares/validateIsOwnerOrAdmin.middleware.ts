@@ -16,7 +16,7 @@ const validateIsOwnerOrAdminMiddleware = async (
 
   const foundUser = await userRepository.findOneBy({ id: userId });
 
-  if (foundUser?.id !== loggedUser || foundUser?.is_adm) {
+  if (foundUser?.id !== loggedUser || !loggerUser?.is_adm) {
     throw new AppError("You can't access this data.", 403);
   }
   return next();
