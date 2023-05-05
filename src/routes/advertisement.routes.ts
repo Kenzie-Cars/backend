@@ -14,7 +14,12 @@ import validateSellerMiddleware from "../middlewares/validateSeller.middleware";
 import validateUuidMiddleware from "../middlewares/validateUuid.middleware";
 import { Advertisements } from "../entities/advertisement.entity";
 import validateAdvertiseOwnerMiddleware from "../middlewares/validateAdvertiseOwner.middleware";
-import { createCommentsController, deleteCommentsController, updateCommentsController } from "../controllers/comment.controller";
+import validateCommentDeleteAdvertiseOwnerMiddleware from "../middlewares/validateCommentDeleteAdvertiseOwner.middleware";
+import {
+  createCommentsController,
+  deleteCommentsController,
+  updateCommentsController,
+} from "../controllers/comment.controller";
 import validateCommentOrAdvertiseMiddleware from "../middlewares/validateCommentOrAdvertiseOwner.middleware";
 import { Users } from "../entities/user.entity";
 
@@ -36,9 +41,10 @@ advertisementsRouter.get(
   getAdvertiseController,
 );
 
-advertisementsRouter.get("/user/:id", 
-validateUuidMiddleware(Users),
-getUserAdsController
+advertisementsRouter.get(
+  "/user/:id",
+  validateUuidMiddleware(Users),
+  getUserAdsController,
 );
 
 advertisementsRouter.patch(
@@ -62,21 +68,22 @@ advertisementsRouter.delete(
 advertisementsRouter.post(
   "/comments/:id",
   validateAuthMiddleware,
-  createCommentsController
+  createCommentsController,
 );
 
 advertisementsRouter.delete(
   "/comments/:id",
   validateAuthMiddleware,
-  validateCommentOrAdvertiseMiddleware,
-  deleteCommentsController
+  // validateCommentOrAdvertiseMiddleware,
+  validateCommentDeleteAdvertiseOwnerMiddleware,
+  deleteCommentsController,
 );
 
 advertisementsRouter.patch(
   "/comments/:id",
   validateAuthMiddleware,
   validateCommentOrAdvertiseMiddleware,
-  updateCommentsController
+  updateCommentsController,
 );
 
 export default advertisementsRouter;
