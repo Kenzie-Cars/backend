@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, DeleteDateColumn} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, Column, UpdateDateColumn} from "typeorm";
 import { Advertisements } from "./advertisement.entity";
 import { Users } from "./user.entity";
 
@@ -6,11 +6,14 @@ import { Users } from "./user.entity";
 export class Users_advertisements {
     @PrimaryGeneratedColumn("uuid")
     id: string;
+
+    @Column({length: 500, nullable: true})
+    comment: string;
     
     @CreateDateColumn({ type: "timestamp" })
     created_at: Date;
   
-    @DeleteDateColumn({ type: "timestamp" })
+    @UpdateDateColumn({ type: "timestamp" })
     updated_at: Date;
 
     @ManyToOne(() => Users, (user) => user.userAdvertisements)
