@@ -7,15 +7,16 @@ import { AppError } from "../errors";
 const validateIsOwnerOrAdminMiddleware = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const userId = req.params.id;
+  const loggedUser = req.user.id;
 
   const userRepository: Repository<Users> = AppDataSource.getRepository(Users);
 
   const foundUser = await userRepository.findOneBy({ id: userId });
 
-  if (foundUser?.id !== userId && !foundUser?.is_adm) {
+  if (foundUser?.id !== loggedUser || foundUser?.is_adm) {
     throw new AppError("You can't access this data.", 403);
   }
   return next();
