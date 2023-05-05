@@ -11,7 +11,7 @@ export const getUserAdsService = async (userId: string) => {
     .createQueryBuilder()
     .from(Users, "users")
     .leftJoinAndSelect("users.advertisements", "advertisements")
-    .select(["advertisements", "users.id"])
+    .select(["advertisements", "users.id", "users.name", "users.email"])
     .where("advertisements.user = :id", {id:userId})
     .getMany()
 
