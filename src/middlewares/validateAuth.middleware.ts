@@ -25,6 +25,7 @@ const validateAuthMiddleware = async (
     req.user = {
       id: decoded.sub,
       is_active: decoded.is_active,
+      is_adm: decoded.is_adm,
     };
     return next();
   });
