@@ -22,46 +22,46 @@ import { forgotPasswordController } from "../controllers/auth/forgotPassword.con
 
 export const userRoutes: Router = Router();
 
-export const passwordResetRoutes: Router = Router()
+export const passwordResetRoutes: Router = Router();
 
-export const passwordForgotRoutes: Router = Router()
+export const passwordForgotRoutes: Router = Router();
 
 userRoutes.post(
   "",
   validateDataMiddleware(userSerializer),
   validateAdvertiseField(responseUserSerializer),
-  createUserController
+  createUserController,
 );
 userRoutes.get(
   "/:id",
   // validateAuthMiddleware,
-  // validateUuidMiddleware(Users),
+  validateUuidMiddleware(Users),
   // validateIsOwnerOrAdminMiddleware,
-  getUserController
+  getUserController,
 );
 userRoutes.patch(
   "/:id",
   validateAuthMiddleware,
   validateUuidMiddleware(Users),
   validateIsOwnerOrAdminMiddleware,
-  updateUserController
+  updateUserController,
 );
 userRoutes.delete(
   "/:id",
   validateAuthMiddleware,
   validateUuidMiddleware(Users),
   validateIsOwnerOrAdminMiddleware,
-  deleteUserController
+  deleteUserController,
 );
 
 passwordForgotRoutes.post(
-  '',
+  "",
   validateDataMiddleware(forgotPasswordSerializer),
-  forgotPasswordController
-)
+  forgotPasswordController,
+);
 
 passwordResetRoutes.patch(
-  '/:resetToken',
+  "/:resetToken",
   validateDataMiddleware(resetPasswordSerializer),
-  resetPasswordController
-)
+  resetPasswordController,
+);
