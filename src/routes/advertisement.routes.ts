@@ -25,14 +25,15 @@ advertisementsRouter.post(
   validateAuthMiddleware,
   validateSellerMiddleware,
   validateDataMiddleware(AdvertisementSchema),
-  createAdvertisementController
+  createAdvertisementController,
 );
 
 advertisementsRouter.get("", listAdvertisementsController);
 
-advertisementsRouter.get("/:id", 
-validateUuidMiddleware(Advertisements),
-getAdvertiseController
+advertisementsRouter.get(
+  "/:id",
+  validateUuidMiddleware(Advertisements),
+  getAdvertiseController,
 );
 
 advertisementsRouter.get("/user/:id", 
@@ -43,19 +44,19 @@ getUserAdsController
 advertisementsRouter.patch(
   "/:id",
   validateAuthMiddleware,
+  validateUuidMiddleware(Advertisements),
   validateSellerMiddleware,
   validateAdvertiseOwnerMiddleware,
-  validateUuidMiddleware(Advertisements),
-  updateAdvertisementsController
+  updateAdvertisementsController,
 );
 
 advertisementsRouter.delete(
   "/:id",
   validateAuthMiddleware,
+  validateUuidMiddleware(Advertisements),
   validateSellerMiddleware,
   validateAdvertiseOwnerMiddleware,
-  validateUuidMiddleware(Advertisements),
-  deleteAdvertisementsController
+  deleteAdvertisementsController,
 );
 
 advertisementsRouter.post(
