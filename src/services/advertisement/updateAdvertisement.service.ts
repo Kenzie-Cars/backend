@@ -29,12 +29,31 @@ const updateAdvertisementsService = async (advertisementData: IUpdateAdvertiseme
 
             image.advertisementsId = advertisement.id;
 
+            if (!image.image1) {
+                image.image1 = advertisement.images[0].image1
+            }
+            if (!image.image2) {
+                image.image2 = advertisement.images[0].image2
+            }
+            if (!image.image3) {
+                image.image3 = advertisement.images[0].image3
+            }
+            if (!image.image4) {
+                image.image4 = advertisement.images[0].image4
+            }
+            if (!image.image5) {
+                image.image5 = advertisement.images[0].image5
+            }
+            if (!image.image6) {
+                image.image6 = advertisement.images[0].image6
+            }
+            
             const currentImage = imagesRepository.create(image);
             await imagesRepository.save(currentImage);
             imgs.push(currentImage);
         }
 
-        advertisement.images = [...imgs, ...advertisement.images]
+        advertisement.images = [...imgs]
 
     }
 
