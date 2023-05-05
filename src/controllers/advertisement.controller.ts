@@ -5,6 +5,7 @@ import updateAdvertisementsService from "../services/advertisement/updateAdverti
 import deleteAdvertisementsService from "../services/advertisement/deleteAdvertisement.service";
 import createAdvertisementService from "../services/advertisement/createAdvertisement.service";
 import { getAdvertiseService } from "../services/advertisement/getAdvertise.service";
+import { getUserAdsService } from "../services/advertisement/getUserAds.service";
 
 
 const createAdvertisementController = async (req: Request, res: Response) => {
@@ -21,13 +22,18 @@ const createAdvertisementController = async (req: Request, res: Response) => {
 
 const listAdvertisementsController = async (req: Request, res: Response) => {
     const listAdvertsements = await ListAdvertisementService(req.query)
-    console.log(req.query)
     return res.status(200).json(listAdvertsements)
 }
 const getAdvertiseController = async (req: Request, res: Response) => {
     const advertiseId = req.params.id
     const advertise = await getAdvertiseService(advertiseId)
     return res.status(200).json(advertise)
+}
+
+const getUserAdsController = async (req: Request, res: Response) => {
+    const userId = req.params.id
+    const userAdvertises = await getUserAdsService(userId)
+    return res.status(200).json(userAdvertises) 
 }
 
 const updateAdvertisementsController = async (req: Request, res: Response) => {
@@ -42,5 +48,5 @@ const deleteAdvertisementsController = async (req: Request, res: Response) => {
     return res.status(204).json()
 }
 
-export { createAdvertisementController, listAdvertisementsController, updateAdvertisementsController, deleteAdvertisementsController, getAdvertiseController };
+export { createAdvertisementController, listAdvertisementsController, updateAdvertisementsController, deleteAdvertisementsController, getAdvertiseController, getUserAdsController };
 
