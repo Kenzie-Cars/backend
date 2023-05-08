@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 export const createSessionService = async ({
   email,
-  password,
+  userPassword,
 }: IUserLogin): Promise<IToken> => {
   const userRepository = AppDataSource.getRepository(Users);
 
@@ -21,7 +21,7 @@ export const createSessionService = async ({
     throw new AppError("User or password Invalid", 401);
   }
 
-  const passwordMatch = await compare(password, user.password);
+  const passwordMatch = await compare(userPassword, user.password);
   if (!passwordMatch) {
     throw new AppError("User or password invalid", 401);
   }
@@ -36,5 +36,7 @@ export const createSessionService = async ({
       expiresIn: "24h",
     },
   );
-  return { token, user };
+
+  const { password, ...restUser } = user;
+  return { token, restUser };
 };

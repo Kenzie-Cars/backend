@@ -5,7 +5,7 @@ import { Users } from "../entities/user.entity";
 const validateSellerMiddleware = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const userRepository = AppDataSource.getRepository(Users);
   const seller = await userRepository.findOneBy({ id: req.user.id });
@@ -19,4 +19,4 @@ const validateSellerMiddleware = async (
   return next();
 };
 
-export default validateSellerMiddleware
+export default validateSellerMiddleware;

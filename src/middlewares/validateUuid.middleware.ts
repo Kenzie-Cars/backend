@@ -17,10 +17,10 @@ const validateUuidMiddleware =
     });
 
     if (!idInfo) {
-      return res.status(404).json({ message: "id not found" });
+      return res.status(404).json({ message: "Resource not found" });
     }
 
     return next();
   };
 
-  export default validateUuidMiddleware
+export default validateUuidMiddleware;

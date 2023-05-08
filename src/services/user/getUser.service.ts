@@ -16,7 +16,22 @@ export const getUserService = async (userId: string) => {
       phone: true,
       cpf: true,
       description: true,
-      advertisements: true,
+      advertisements: {
+        id: true,
+        brand: true,
+        color: true,
+        cover_img: true,
+        created_at: true,
+        description: true,
+        fuel: true,
+        is_active: true,
+        is_goodSale: true,
+        km: true,
+        model: true,
+        price: true,
+        year: true,
+        user: { id: true, name: true, email: true, phone: true },
+      },
     },
     relations: {
       advertisements: {

@@ -52,7 +52,15 @@ export const ReturnAdvertisementSchema: any = yup.object().shape({
       image5: yup.string().optional().nullable(true),
       image6: yup.string().optional().nullable(true),
       advertisementId: yup.string().uuid().optional(),
-    })
+    }),
+  ),
+  user: yup.array(
+    yup.object().shape({
+      id: yup.string().uuid().optional(),
+      name: yup.string(),
+      email: yup.string(),
+      description: yup.string(),
+    }),
   ),
   created_at: yup.date().nullable().default(null),
   updated_at: yup.date().nullable().default(null),

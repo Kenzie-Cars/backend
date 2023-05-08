@@ -60,7 +60,7 @@ export class Advertisements {
 
   @OneToMany(
     () => Users_advertisements,
-    (userAdvertisements) => userAdvertisements.advertisements
+    (userAdvertisements) => userAdvertisements.advertisements, {onDelete: "CASCADE"}
   )
   userAdvertisements: Users_advertisements[];
 

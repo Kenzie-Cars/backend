@@ -24,7 +24,7 @@ export interface IUserUpdate {
 
 export interface IUserLogin {
   email: string;
-  password: string;
+  userPassword: string;
 }
 export interface IUserResponse {
   id: string;
@@ -41,10 +41,17 @@ export interface IUserResponse {
   updated_at: Date;
   address: IAddress;
 }
+export interface IUserAdvResponse {
+  id: string;
+  name: string;
+  description: string;
+  email: string
+
+}
 
 export interface IToken {
   token: string;
-  user: IUserResponse;
+  restUser: Omit<IUserResponse, "password">;
 }
 export interface IAddress {
   cep: string;
@@ -73,10 +80,10 @@ export interface IAddressResponse {
 }
 
 export interface IPasswordForgot {
-  email: string
+  email: string;
 }
 
 export interface IPasswordReset {
-  password: string
-  passwordConfirmation: string
+  password: string;
+  passwordConfirmation: string;
 }
