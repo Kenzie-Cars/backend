@@ -28,7 +28,7 @@ export const getAdvertiseService = async (adId: string) => {
   //   },
   // });
 
-  const advertise = advertiseRepository
+  const advertise = await advertiseRepository
   .createQueryBuilder()
   .from(Advertisements, "advertisements")
   .select("advertisements")
@@ -40,8 +40,6 @@ export const getAdvertiseService = async (adId: string) => {
   .addSelect(["commentUser.id", "commentUser.name", "commentUser.description"])
   .where("advertisements.id = :id", {id:adId})
   .getOne()
-
-
 
   if (!advertise) {
     throw new AppError("Advertise not found.", 404);

@@ -1,3 +1,5 @@
+import { IUserAdvResponse } from "../users";
+
 export interface IImages {
   image1: string;
   image2: string;
@@ -52,6 +54,7 @@ export interface IAdvertisementResponse {
   year: string;
   fuel: string;
   color: string;
+  user: IUserAdvResponse
   description: string;
   km: number;
   FIPE_price: number;
