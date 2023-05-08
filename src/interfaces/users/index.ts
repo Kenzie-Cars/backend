@@ -41,6 +41,13 @@ export interface IUserResponse {
   updated_at: Date;
   address: IAddress;
 }
+export interface IUserAdvResponse {
+  id: string;
+  name: string;
+  description: string;
+  email: string
+
+}
 
 export interface IToken {
   token: string;

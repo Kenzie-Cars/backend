@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { IAdvertisementResponse } from "../interfaces/advertisements";
-import ListAdvertisementService from "../services/advertisement/listAvertisemet.service";
-import updateAdvertisementsService from "../services/advertisement/updateAdvertisement.service";
-import deleteAdvertisementsService from "../services/advertisement/deleteAdvertisement.service";
 import createAdvertisementService from "../services/advertisement/createAdvertisement.service";
+import deleteAdvertisementsService from "../services/advertisement/deleteAdvertisement.service";
 import { getAdvertiseService } from "../services/advertisement/getAdvertise.service";
 import { getUserAdsService } from "../services/advertisement/getUserAds.service";
+import ListAdvertisementService from "../services/advertisement/listAdvertisement.service";
+import updateAdvertisementsService from "../services/advertisement/updateAdvertisement.service";
 
 
 const createAdvertisementController = async (req: Request, res: Response) => {
@@ -15,10 +15,6 @@ const createAdvertisementController = async (req: Request, res: Response) => {
     return res.status(201).json(newAdvertisement)
 }
 
-// const listAdvertisementsController = async (req: Request, res: Response) => {
-//     const listAdvertsements = await ListAdvertisementService()
-//     return res.status(200).json(listAdvertsements)
-// }
 
 const listAdvertisementsController = async (req: Request, res: Response) => {
     const listAdvertsements = await ListAdvertisementService(req.query)
@@ -33,7 +29,7 @@ const getAdvertiseController = async (req: Request, res: Response) => {
 const getUserAdsController = async (req: Request, res: Response) => {
     const userId = req.params.id
     const userAdvertises = await getUserAdsService(userId)
-    return res.status(200).json(userAdvertises) 
+    return res.status(200).json(userAdvertises)
 }
 
 const updateAdvertisementsController = async (req: Request, res: Response) => {

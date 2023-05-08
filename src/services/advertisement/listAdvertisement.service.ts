@@ -40,7 +40,8 @@ const ListAdvertisementService = async (query: any) => {
       user: {
         id: true,
         email: true,
-        name: true
+        name: true,
+        description: true
       }
     },
     relations: {
