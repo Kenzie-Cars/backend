@@ -1,9 +1,10 @@
-import { IAddress, IAddressResponse, IAddressUpdate } from "../../interfaces/users";
+import { IAddressResponse } from "../../interfaces/users";
 import { SchemaOf } from "yup";
 import * as yup from "yup";
 
-
-export const addressSerializerResponse: SchemaOf<IAddressResponse> = yup.object().shape({
+export const addressSerializerResponse: SchemaOf<IAddressResponse> = yup
+  .object()
+  .shape({
     id: yup.string(),
     cep: yup.string(),
     state: yup.string(),
@@ -11,13 +12,6 @@ export const addressSerializerResponse: SchemaOf<IAddressResponse> = yup.object(
     street: yup.string(),
     number: yup.string(),
     complement: yup.string(),
-}).clone().noUnknown() as SchemaOf<IAddressResponse>
-
-// export const addressSerializerUpdate: SchemaOf<IAddressUpdate> = yup.object().shape({
-//     cep: yup.string().notRequired(),
-//     state: yup.string().notRequired(),
-//     city: yup.string().notRequired(),
-//     street: yup.string().notRequired(),
-//     number: yup.string().notRequired(),
-//     complement: yup.string().notRequired()
-// })
+  })
+  .clone()
+  .noUnknown() as SchemaOf<IAddressResponse>;

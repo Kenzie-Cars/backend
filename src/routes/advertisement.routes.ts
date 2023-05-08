@@ -22,6 +22,7 @@ import {
 } from "../controllers/comment.controller";
 import validateCommentOrAdvertiseMiddleware from "../middlewares/validateCommentOrAdvertiseOwner.middleware";
 import { Users } from "../entities/user.entity";
+import { commentsSchemaRequest } from "../schemas/comments/comments";
 
 const advertisementsRouter = Router();
 
@@ -68,6 +69,7 @@ advertisementsRouter.delete(
 advertisementsRouter.post(
   "/comments/:id",
   validateAuthMiddleware,
+  validateDataMiddleware(commentsSchemaRequest),
   createCommentsController,
 );
 
