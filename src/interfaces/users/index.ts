@@ -46,6 +46,7 @@ export interface IUserAdvResponse {
   name: string;
   description: string;
   email: string
+  phone: string
 
 }
 
