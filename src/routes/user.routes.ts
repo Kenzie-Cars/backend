@@ -11,7 +11,7 @@ import { Users } from "../entities/user.entity";
 import validateAdvertiseField from "../middlewares/validateAdvertiseField.middleware";
 import validateAuthMiddleware from "../middlewares/validateAuth.middleware";
 import validateDataMiddleware from "../middlewares/validateData.middleware";
-import { default as validateIsOwnerMiddleware, default as validateIsOwnerOrAdminMiddleware } from "../middlewares/validateIsOwnerOrAdmin.middleware";
+import validateIsOwnerMiddleware from "../middlewares/validateIsOwnerOrAdmin.middleware";
 import validateUuidMiddleware from "../middlewares/validateUuid.middleware";
 import {
   forgotPasswordSerializer,
