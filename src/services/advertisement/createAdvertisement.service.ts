@@ -2,10 +2,10 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Advertisements } from "../../entities/advertisement.entity";
 import { Images } from "../../entities/images";
-import { IAdvertisementResponse } from "../../interfaces/advertisements";
-import { ReturnAdvertisementSchema } from "../../schemas/advertisement";
 import { Users } from "../../entities/user.entity";
 import { AppError } from "../../errors";
+import { IAdvertisementResponse } from "../../interfaces/advertisements";
+import { ReturnAdvertisementSchema } from "../../schemas/advertisement";
 
 const createAdvertisementService = async (
   advertisementData: IAdvertisementResponse,
@@ -22,12 +22,10 @@ const createAdvertisementService = async (
   if (!advertiser) {
     throw new AppError("Invalid user", 404);
   }
-  const advertisement: Advertisements = advertisementRepository.create({...rest, user:advertiser});
+  const advertisement: Advertisements = advertisementRepository.create({ ...rest, user: advertiser });
   const imgs = [];
 
-  // Crie as imagens e associe o ID do anúncio a cada imagem
   for (let image of images!) {
-    // Atribua o ID do anúncio à propriedade FK da imagem
     image.advertisementsId = advertisement.id;
 
     const currentImage = imagesRepository.create(image);
@@ -35,7 +33,6 @@ const createAdvertisementService = async (
     imgs.push(currentImage);
   }
 
-  // Atualize o anúncio com as imagens associadas
   advertisement.images = imgs;
   await advertisementRepository.save(advertisement);
 
