@@ -16,6 +16,7 @@ export const getUserService = async (userId: string) => {
       phone: true,
       cpf: true,
       description: true,
+      is_seller: true,
       advertisements: {
         id: true,
         brand: true,
