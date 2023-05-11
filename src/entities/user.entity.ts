@@ -22,7 +22,7 @@ export class Users {
 
   @Column()
   name: string;
-  
+
   @Column({ unique: true })
   email: string;
 
@@ -41,7 +41,7 @@ export class Users {
   @Column({ length: 500 })
   description: string;
 
-  @Column({default:false})
+  @Column({ default: false })
   is_adm: boolean;
 
   @Column({ default: true })
@@ -49,6 +49,9 @@ export class Users {
 
   @Column()
   is_seller: boolean;
+
+  @Column()
+  userColor: string;
 
   @CreateDateColumn({ type: "timestamp" })
   created_at: Date;
@@ -65,10 +68,10 @@ export class Users {
     }
   }
 
-  @Column({unique: true, nullable: true})
+  @Column({ unique: true, nullable: true })
   passwordResetToken: string;
 
-  @Column({type: 'timestamp', nullable: true})
+  @Column({ type: 'timestamp', nullable: true })
   passwordResetedAt: Date;
 
   @OneToMany(() => Advertisements, (advertisements) => advertisements.user)

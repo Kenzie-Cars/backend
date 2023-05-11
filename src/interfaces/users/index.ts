@@ -8,6 +8,7 @@ export interface IUser {
   description: string;
   is_adm?: boolean;
   is_seller: boolean;
+  userColor: string;
   address?: IAddress | undefined;
 }
 export interface IUserUpdate {
@@ -37,6 +38,7 @@ export interface IUserResponse {
   is_adm: boolean;
   is_seller: boolean;
   is_active: boolean;
+  userColor: string;
   created_at: Date;
   updated_at: Date;
   address: IAddress;
