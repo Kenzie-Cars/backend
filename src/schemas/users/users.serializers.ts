@@ -14,6 +14,7 @@ export const userSerializer: SchemaOf<IUser> = yup.object().shape({
     description: yup.string().required("Write a description"),
     is_adm: yup.boolean().notRequired().default(false),
     is_seller: yup.boolean(),
+    userColor: yup.string().default('blue'),
     address: addressSerializerResponse,
     userAdvertisements: ListAdvertisementsSchema.notRequired()
 }).clone() as SchemaOf<IUser>
@@ -29,6 +30,7 @@ export const responseUserSerializer: SchemaOf<IUserResponse> = yup.object().shap
     is_adm: yup.boolean(),
     is_seller: yup.boolean(),
     is_active: yup.boolean(),
+    userColor: yup.string(),
     created_at: yup.date(),
     updated_at: yup.date(),
     address: addressSerializerResponse,
