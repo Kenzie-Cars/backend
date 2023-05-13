@@ -60,6 +60,7 @@ export const ReturnAdvertisementSchema: any = yup.object().shape({
       name: yup.string(),
       email: yup.string(),
       description: yup.string(),
+      // userColor: yup.string()
     }),
   ),
   created_at: yup.date().nullable().default(null),
