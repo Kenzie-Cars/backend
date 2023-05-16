@@ -32,7 +32,13 @@ export const getUserService = async (userId: string) => {
         model: true,
         price: true,
         year: true,
-        user: { id: true, name: true, email: true, phone: true },
+        user: {
+          id: true,
+          name: true,
+          email: true,
+          phone: true,
+          userColor: true,
+        },
       },
     },
     relations: {
