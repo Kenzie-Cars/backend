@@ -18,17 +18,17 @@ import { nullableComplement1682970274049 } from "./migrations/1682970274049-null
 import { addCommentField1683116317172 } from "./migrations/1683116317172-addCommentField";
 import { fixCommentColumn1683118477211 } from "./migrations/1683118477211-fixCommentColumn";
 import { fixCommentsEntity1683203002158 } from "./migrations/1683203002158-fixCommentsEntity";
-import { UserColor1683810579979 } from "./migrations/1683810579979-userColor"
-
+import { UserColor1683810579979 } from "./migrations/1683810579979-userColor";
 
 const dataSourceConfig = (): DataSourceOptions => {
   const migrationsPath: string = path.join(
     __dirname,
-    "./migrations/**.{js,ts}"
+    "./migrations/**.{js,ts}",
   );
   const dbUrl: string | undefined = process.env.DATABASE_URL;
   if (!dbUrl) {
-    throw new Error("Var env DATABASE_URL was not defined"); ''
+    throw new Error("Var env DATABASE_URL was not defined");
+    ("");
   }
 
   const nodeEnv: string | undefined = process.env.NODE_ENV;
@@ -46,8 +46,19 @@ const dataSourceConfig = (): DataSourceOptions => {
     synchronize: false,
     logging: true,
     entities: [Users, Address, Advertisements, Images, Users_advertisements],
-    migrations: [InitialMigration1682077468804, fixAdvertisementEntity1682080402875, AlterImageTable1682356619131, AlterImageNullable1682357257854, AlterAdvTable1682384912463, CreatePasswordResetToken1682682965227, nullableComplement1682970274049, addCommentField1683116317172, fixCommentColumn1683118477211, fixCommentsEntity1683203002158, UserColor1683810579979]
-
+    migrations: [
+      InitialMigration1682077468804,
+      fixAdvertisementEntity1682080402875,
+      AlterImageTable1682356619131,
+      AlterImageNullable1682357257854,
+      AlterAdvTable1682384912463,
+      CreatePasswordResetToken1682682965227,
+      nullableComplement1682970274049,
+      addCommentField1683116317172,
+      fixCommentColumn1683118477211,
+      fixCommentsEntity1683203002158,
+      UserColor1683810579979,
+    ],
   };
 };
 
